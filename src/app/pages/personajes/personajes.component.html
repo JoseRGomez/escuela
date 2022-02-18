@@ -1,0 +1,51 @@
+<!--  Sección de Personajes -->
+<!-- Muestra los datos desde la base de datos -->
+
+<div align="center" style="color: blue;" class="encabezado">
+  <h2>Sección Personajes</h2>
+  <select matNativeControl required>
+    <option value="slytherin">Slytherin</option>
+    <option value="gryffindor">Gryffindor</option>
+    <option value="ravenclaw">Ravenclaw</option>
+    <option value="hufflepuff">Hufflepuff</option>
+  </select>
+</div>
+<div class="mat-elevation-z8">
+
+ <table mat-table [dataSource]="personajes" class="mat-elevation-z8">
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+<ng-container matColumnDef="patronus">
+    <th mat-header-cell *matHeaderCellDef> patronus </th>
+    <td mat-cell *matCellDef="let element"> {{element.patronus}} </td>
+  </ng-container>
+
+<ng-container matColumnDef="age">
+    <th mat-header-cell *matHeaderCellDef> age </th>
+    <td mat-cell *matCellDef="let element"> {{element.age }} </td>
+  </ng-container>
+
+<ng-container matColumnDef="image">
+    <th mat-header-cell *matHeaderCellDef> Image </th>
+    <td mat-cell *matCellDef="let element"> 
+       <img src="{{element.image}}" style="width:40px;height: 40px; border-radius: 30px;"> 
+         </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="['name','patronus','age','image']"></tr>
+  <tr mat-row *matRowDef="let row; columns: [ 'name','patronus','age','image' ];"></tr>
+
+    
+</table> 
+
+  <mat-paginator [length]="personajes.length"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page">
+</mat-paginator>
+</div>
